@@ -2,34 +2,15 @@ version: "2"
 
 services:
 
-  samba:
-    image: dperson/samba:rpi
-    restart: always
-    command: '-u "pi;password" -s "media;/media;yes;no" -s "downloads;/downloads;yes;no"'
-    stdin_open: true
-    tty: true
-    ports:
-      - 139:139
-      - 445:445
-    volumes:
-      - /usr/share/zoneinfo/America/Argentina/Mendoza:/etc/localtime
-      - ${MEDIA}:/media
-      - ${STORAGE}/torrents:/downloads
-
   plex:
-    image: jaymoulin/plex:1.25.2.5319-armhf
+    image: jaymoulin/plex
     expose:
       - 32400
       - 33400
-    hostname: raspberrypi
+    hostname: plex
     volumes:
-      - ${STORAGE}/Plex Media Server:/root/Library/Application Support/Plex Media Server
-      - ${MEDIA}:/media
-      - ${STORAGE}/tmp:/tmp
+      - /data/media:/media
     restart: unless-stopped
-    networks: 
-      lan:
-        ipv4_address: 192.168.0.3
 
   transmission:
     image : jaymoulin/transmission
@@ -59,13 +40,3 @@ services:
     restart: unless-stopped
     links:
       - transmission
-
-networks:
-  lan:
-    driver: macvlan
-    driver_opts:
-      parent: eth0
-    ipam:
-      config:
-        - subnet: "192.168.0.0/24"       
-          gateway: "192.168.0.1"

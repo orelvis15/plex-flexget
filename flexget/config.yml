@@ -18,21 +18,6 @@ templates:
           quality: 720p
       tv:
       - Black Mirror
-      - Brooklyn Nine-Nine
-      - Homeland
-      - Luther
-      - Mr Robot
-      - Rick and Morty
-      - SEAL Team
-      - Sherlock
-      - Silicon Valley
-      - Suits
-      - The Flash
-      - The Good Fight
-      - The Walking Dead
-      - Tosh.0
-      - True Detective
-      - Westworld
 
     transmission:
       host: transmission
@@ -51,7 +36,7 @@ tasks:
     parsing:
       series: guessit
     filesystem:
-      path: /downloads/complete
+      path: /data/downloads/complete
       regexp: '.*\.(avi|mkv|mp4)$'
       recursive: yes
     accept_all: yes
@@ -72,7 +57,7 @@ tasks:
     priority: 2
     no_entries_ok: yes
     filesystem:
-      path: /downloads/complete
+      path: /data/downloads/complete
       regexp: '.*\.(avi|mkv|mp4)$'
       recursive: yes
     accept_all: yes

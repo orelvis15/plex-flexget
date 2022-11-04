@@ -8,10 +8,10 @@ templates:
     configure_series:
       from:
         trakt_list:
-          username: usuario-trakt
-          account: usuario-api
+          username: orelvis15
+          account: 9e0037a24ae97cf02613501c741d5a7f477e47cf672eb6ece2f92332015e1209
           strip_dates: yes
-          list: lista-series
+          list: series
           type: shows
       settings:
           exact: yes
@@ -26,10 +26,10 @@ templates:
 
   pelis:
         trakt_list:
-          username: usuario-trakt
-          account: usuario-api
+          username: orelvis15
+          account: 9e0037a24ae97cf02613501c741d5a7f477e47cf672eb6ece2f92332015e1209
           strip_dates: yes
-          list: lista-pelis
+          list: peliculas
           type: movies
         seen: local
         no_entries_ok: yes
@@ -45,40 +45,40 @@ tasks:
     no_entries_ok: yes
     trakt_lookup: yes
     trakt_list:
-          username: usuario-trakt
-          account: usuario-api
+          username: orelvis15
+          account: 9e0037a24ae97cf02613501c741d5a7f477e47cf672eb6ece2f92332015e1209
           strip_dates: yes
-          list: lista-series
+          list: series
           type: shows
     accept_all: yes
     set_series_begin: yes
     list_remove:
       - trakt_list:
-          username: usuario-trakt
-          account: usuario-api
-          list: lista-series
+          username: orelvis15
+          account: 9e0037a24ae97cf02613501c741d5a7f477e47cf672eb6ece2f92332015e1209
+          list: series
           type: shows
     list_add:
       - trakt_list:
-          username: usuario-trakt
-          account: usuario-api
-          list: lista-series
+          username: orelvis15
+          account: 9e0037a24ae97cf02613501c741d5a7f477e47cf672eb6ece2f92332015e1209
+          list: series
           type: shows
     next_trakt_episodes:
-        username: usuario-trakt
-        account: usuario-api
+        username: orelvis15
+        account: 9e0037a24ae97cf02613501c741d5a7f477e47cf672eb6ece2f92332015e1209
         context: watched # esto depende de como cada uno usa trakt, puede ser collected también
-        list: lista-series
+        list: series
 
 # Esta tarea sincroniza la lista de pelis
   sync-movies:
     trakt_list:
-      username: usuario-trakt
-      account: usuario-api
-      list: lista-pelis
+      username: orelvis15
+      account: 9e0037a24ae97cf02613501c741d5a7f477e47cf672eb6ece2f92332015e1209
+      list: peliculas
     accept_all: yes
     list_add:
-      - movie_list: lista-pelis
+      - movie_list: peliculas
       
 # En las tareas discover-* buscamos el contenido de las listas previamente generadas.
 # Usando los templates previamente creados, pasamos la configuración de lo que queremos ver.
@@ -88,10 +88,10 @@ discover-series:
     discover:
       what:
         - next_trakt_episodes:
-            username: usuario-trakt
-            account: usuario-api
+            username: orelvis15
+            account: 9e0037a24ae97cf02613501c741d5a7f477e47cf672eb6ece2f92332015e1209
             context: watched
-            list: lista-series
+            list: series
       from:
         - argenteam:
             force_subtitles: yes
@@ -110,9 +110,9 @@ discover-series:
     list_match:
               from:
                 - trakt_list:
-                   username: usuario-trakt
-                   account: usuario-api
-                   list: lista-series
+                   username: orelvis15
+                   account: 9e0037a24ae97cf02613501c741d5a7f477e47cf672eb6ece2f92332015e1209
+                   list: series
                    type: shows
     torrent_alive: 10 # Will reject results with less than 10 seeds
     transmission:
@@ -127,7 +127,7 @@ discover-series:
     discover:
       what:
         - movie_list:
-            list_name: lista-pelis
+            list_name: peliculas
             strip_year: yes
       from:
         - argenteam:
@@ -147,7 +147,7 @@ discover-series:
       interval: 1 days
     list_match:
       from:
-        - movie_list: lista-pelis
+        - movie_list: peliculas
     torrent_alive: 10 # Will reject results with less than 10 seeds
     transmission:
       host: transmission
@@ -163,7 +163,7 @@ discover-series:
     parsing:
       series: guessit
     filesystem:
-      path: /downloads/complete
+      path: /data/downloads/complete
       regexp: '.*\.(avi|mkv|mp4)$'
       recursive: yes
     accept_all: yes
