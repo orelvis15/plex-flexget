@@ -16,8 +16,8 @@ services:
     image : jaymoulin/transmission
     command: transmission-daemon -f -g /config
     volumes:
-      - ./transmission:/config
-      - ${STORAGE}/torrents:/downloads
+      - /data/transmission:/config
+      - /data/torrents:/downloads
     ports:
       - 9091:9091
       - 51413:51413
@@ -29,9 +29,9 @@ services:
   flexget:
     image: wiserain/flexget:3.3.39
     volumes:
-      - ./flexget:/config
-      - ${STORAGE}/torrents:/downloads
-      - ${MEDIA}:/storage
+      - /data/flexget:/config
+      - /data/torrents:/downloads
+      - /data/media:/storage
     ports:
       - 5050:5050
     environment:
