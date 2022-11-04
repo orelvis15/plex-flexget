@@ -36,7 +36,7 @@ tasks:
     parsing:
       series: guessit
     filesystem:
-      path: /data/downloads/complete
+      path: /downloads/complete
       regexp: '.*\.(avi|mkv|mp4)$'
       recursive: yes
     accept_all: yes
@@ -57,7 +57,7 @@ tasks:
     priority: 2
     no_entries_ok: yes
     filesystem:
-      path: /data/downloads/complete
+      path: /downloads/complete
       regexp: '.*\.(avi|mkv|mp4)$'
       recursive: yes
     accept_all: yes
