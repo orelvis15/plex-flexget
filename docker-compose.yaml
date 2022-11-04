@@ -30,7 +30,7 @@ services:
     image: wiserain/flexget:3.3.39
     volumes:
       - ./flexget:/config
-      - /data/torrents:/downloads
+      - /data/downloads:/downloads
       - /data/media:/storage
     ports:
       - 5050:5050
