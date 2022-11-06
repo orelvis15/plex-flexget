@@ -49,9 +49,9 @@ tasks:
       on_output:
         for_entries: |
           if mediainfo "{{ location }}" | grep EAC3; then
-            mkdir -p "/data/storage/series/{{ tvdb_series_name }}/Season {{ series_season }}" && ffmpeg -hwaccel auto -y -i "{{ location }}" -map 0 -c:s copy -c:v copy -c:a ac3 -b:a 640k "/data/storage/series/{{ tvdb_series_name }}/Season {{ series_season }}/{{ tvdb_series_name }} - {{ series_id }}{{ location | pathext }}"
+            mkdir -p "/data/media/series/{{ tvdb_series_name }}/Season {{ series_season }}" && ffmpeg -hwaccel auto -y -i "{{ location }}" -map 0 -c:s copy -c:v copy -c:a ac3 -b:a 640k "/data/storage/series/{{ tvdb_series_name }}/Season {{ series_season }}/{{ tvdb_series_name }} - {{ series_id }}{{ location | pathext }}"
           else
-            mkdir -p "/data/storage/series/{{ tvdb_series_name }}/Season {{ series_season }}" && cp "{{ location }}" "/data/storage/series/{{ tvdb_series_name }}/Season {{ series_season }}/{{ tvdb_series_name }} - {{ series_id }}{{ location | pathext }}"
+            mkdir -p "/data/media/series/{{ tvdb_series_name }}/Season {{ series_season }}" && cp "{{ location }}" "/data/media/series/{{ tvdb_series_name }}/Season {{ series_season }}/{{ tvdb_series_name }} - {{ series_id }}{{ location | pathext }}"
           fi
   sort_movies:
     priority: 2
@@ -68,9 +68,9 @@ tasks:
       on_output:
        for_entries: |
          if mediainfo "{{ location }}" | grep EAC3; then
-           mkdir -p "/data/storage/pelis/{{ movie_name }} ({{ movie_year }})" && ffmpeg -hwaccel auto -y -i "{{ location }}" -map 0 -c:s copy -c:v copy -c:a ac3 -b:a 640k "/data/storage/pelis/{{ movie_name }} ({{ movie_year }})/{{ movie_name }} ({{ movie_year }}){{ location | pathext }}"
+           mkdir -p "/data/media/peliculas/{{ movie_name }} ({{ movie_year }})" && ffmpeg -hwaccel auto -y -i "{{ location }}" -map 0 -c:s copy -c:v copy -c:a ac3 -b:a 640k "/data/media/peliculas/{{ movie_name }} ({{ movie_year }})/{{ movie_name }} ({{ movie_year }}){{ location | pathext }}"
          else
-           mkdir -p "/data/storage/pelis/{{ movie_name }} ({{ movie_year }})" && cp "{{ location }}" "/data/storage/pelis/{{ movie_name }} ({{ movie_year }})/{{ movie_name }} ({{ movie_year }}){{ location | pathext }}"
+           mkdir -p "/data/media/peliculas/{{ movie_name }} ({{ movie_year }})" && cp "{{ location }}" "/data/media/peliculas/{{ movie_name }} ({{ movie_year }})/{{ movie_name }} ({{ movie_year }}){{ location | pathext }}"
          fi
   remove_stale_torrents:
     from_transmission:

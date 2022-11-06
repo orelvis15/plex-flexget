@@ -3,7 +3,7 @@ version: "2"
 services:
 
   plex:
-    image: jaymoulin/plex
+    image: jaymoulin/plex:1.29.1.6316
     expose:
       - 32400
       - 33400
@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
 
   transmission:
-    image : jaymoulin/transmission
+    image : jaymoulin/transmission:3.00
     command: transmission-daemon -f -g /config
     volumes:
       - ./transmission:/config
@@ -28,7 +28,7 @@ services:
 
   flexget:
     image: wiserain/flexget:3.3.39
-    volumes:
+    volumes: 
       - ./flexget:/config
       - /data/downloads:/downloads
       - /data/media:/storage
