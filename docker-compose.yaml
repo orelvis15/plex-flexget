@@ -37,6 +37,8 @@ services:
     environment:
       - TORRENT_PLUGIN=transmission
       - FG_WEBUI_PASSWD=123456
+      - PUID=1000
+      - PGID=1000
     restart: unless-stopped
     links:
       - transmission
